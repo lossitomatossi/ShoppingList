@@ -12,3 +12,6 @@ A python based web project to manage your shopping needs.
 - add categories
 - delete categories
 - assign items different categories
+
+## Database diagram
+![diagram]()
