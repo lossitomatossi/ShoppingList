@@ -18,4 +18,4 @@ A python based web project to manage your shopping needs. You can track which it
 - assign items different categories
 
 ## Database diagram
-![diagram](https://github.com/lossitomatossi/ShoppingList/blob/master/tietokantakaavio.jpg)
+![diagram](https://github.com/lossitomatossi/ShoppingList/blob/master/ShoppingList/documentation/tietokantakaavio.png)
