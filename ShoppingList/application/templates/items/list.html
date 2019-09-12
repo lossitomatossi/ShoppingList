@@ -10,6 +10,10 @@
     <tr>
       <td>{{ item.name }}</td>
       <td>{{ item.bought }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
+          <input type="submit" value="Change status!"/>
+        </form>
     </tr>
     {% endfor %}
   </table>

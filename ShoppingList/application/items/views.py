@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from application.items.models import Item
 
 @app.route("/items", methods=["GET"])
@@ -9,6 +9,15 @@ def items_index():
 @app.route("/items/new/")
 def items_form():
     return render_template("items/new.html")
+
+@app.route("/items/<item_id>/", methods=["POST"])
+def items_set_done(item_id):
+
+    i = Item.query.get(item_id)
+    i.bought = True
+    db.session().commit()
+
+    return redirect(url_for("items_index"))
 
 @app.route("/items/", methods=["POST"])
 def items_create():
