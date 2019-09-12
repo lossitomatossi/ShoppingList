@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Bought</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.bought }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

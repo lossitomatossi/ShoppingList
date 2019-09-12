@@ -11,7 +11,8 @@ class Item(db.Model):
     bought = db.Column(db.Boolean, nullable=False)
     category = db.Column(db.String(40), nullable=False)
 
-    def __init__(self, name):
+    def __init__(self, name, amount, category):
         self.name = name
         self.amount = amount
         self.bought = False
+        self.category = "default"
