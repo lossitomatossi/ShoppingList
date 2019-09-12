@@ -10,8 +10,12 @@ A python based web project to manage your shopping needs. You can track which it
 - delete users (deleting a user will delete all your lists)
 - add items to be bought
 - mark items as bought
+- assign categories to items
+- change/remove categories from items
+- change the amount of an item you want to buy
 - add items to lists
 - delete items from lists
+- rename lists
 - delete lists
 - add categories
 - delete categories
