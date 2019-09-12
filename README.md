@@ -1,9 +1,9 @@
 # ShoppingList
-A python based web project to manage your shopping needs.
+A python based web project to manage your shopping needs. You can track which items you want to buy, which items you've already bought and view virtual shopping list for different occasions.
 
 ## Heroku link
 
-![tsoha-shoppinglist](https://tsoha-shoppinglist.herokuapp.com/)
+[tsoha-shoppinglist](https://tsoha-shoppinglist.herokuapp.com/)
 
 ## Features
 - create users
