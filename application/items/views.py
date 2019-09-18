@@ -1,6 +1,8 @@
-from application import app, db
 from flask import render_template, request, redirect, url_for
+
+from application import app, db
 from application.items.models import Item
+from application.items.forms import ItemForm
 
 @app.route("/items", methods=["GET"])
 def items_index():
@@ -8,7 +10,7 @@ def items_index():
 
 @app.route("/items/new/")
 def items_form():
-    return render_template("items/new.html")
+    return render_template("items/new.html", form = ItemForm())
 
 @app.route("/items/<item_id>/", methods=["POST"])
 def items_set_done(item_id):
