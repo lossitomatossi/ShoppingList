@@ -2,8 +2,19 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('items_create') }}">
-  <input type="text" name="name"/>
-  <input type="number" name="amount"/>
-  <input type="submit" value="Add a new item to be bought"/>
+  <table>
+     <tr>
+       <td>
+         {{ form.name.label }}
+       </td>
+       <td>
+         {{ form.name }}
+       </td>
+     </tr>
+     <tr>
+       <td colspan="2">
+         <input type="submit" value="Add a new task"/>
+       </td>
+     </tr>
 </form>
 {% endblock %}
