@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.items.models import Item
@@ -36,6 +36,7 @@ def items_create():
     i.bought = form.bought.data
     i.amount = form.amount.data
     i.category = "default"
+    i.account_id = current_user.id
 
     db.session().add(i)
     db.session().commit()
