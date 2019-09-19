@@ -11,7 +11,10 @@ class Item(db.Model):
     bought = db.Column(db.Boolean, nullable=False)
     category = db.Column(db.String(40), nullable=False)
 
-    def __init__(self, name, amount, category):
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+                           nullable=False)
+
+    def __init__(self, name):
         self.name = name
         self.amount = amount
         self.bought = False
