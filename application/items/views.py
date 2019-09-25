@@ -7,7 +7,7 @@ from application.items.forms import ItemForm
 
 @app.route("/items", methods=["GET"])
 def items_index():
-    return render_template("items/list.html", items = null) #Item.query.all())
+    return render_template("items/list.html", items = Item.query.all())
 
 @app.route("/items/new/")
 @login_required
