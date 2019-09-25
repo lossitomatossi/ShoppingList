@@ -21,6 +21,8 @@ else:
 # Luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)
 
+print(app.config["SQLALCHEMY_DATABASE_URI"])
+
 # Luetaan kansiosta application tiedoston views sisältö
 
 from application.auth import models
