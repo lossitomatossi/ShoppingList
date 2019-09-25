@@ -12,21 +12,22 @@ from flask_sqlalchemy import SQLAlchemy
 # samassa paikassa
 import os
 
-#if os.environ.get("HEROKU"):
-#    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
-#else:
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///items.db"
-app.config["SQLALCHEMY_ECHO"] = True
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///items.db"
+    app.config["SQLALCHEMY_ECHO"] = True
 
 # Luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)
 
 # Luetaan kansiosta application tiedoston views sisältö
 
+from application.auth import models
 
 from application.items import models
 
-from application.auth import models
+
 
 # Luodaan lopulta tarvittavat tietokantataulut
 try:
