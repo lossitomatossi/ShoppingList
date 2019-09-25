@@ -22,14 +22,24 @@ else:
 db = SQLAlchemy(app)
 
 # Luetaan kansiosta application tiedoston views sisältö
-from application import views
+
 
 from application.items import models
-from application.items import views
 
 from application.auth import models
-from application.auth import views
 
+# Luodaan lopulta tarvittavat tietokantataulut
+try:
+    db.create_all()
+except:
+    pass
+
+
+from application import views
+
+from application.items import views
+
+from application.auth import views
 # kirjautuminen
 
 from application.auth.models import User
@@ -46,9 +56,3 @@ login_manager.login_message = "Please login to use this functionality."
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
-# Luodaan lopulta tarvittavat tietokantataulut
-try:
-    db.create_all()
-except:
-    pass
