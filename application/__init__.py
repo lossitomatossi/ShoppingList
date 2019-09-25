@@ -12,7 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 # samassa paikassa
 import os
 
-if.os.environ.get("HEROKU"):
+if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
 else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///items.db"
