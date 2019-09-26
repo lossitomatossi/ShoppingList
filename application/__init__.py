@@ -31,8 +31,8 @@ from application.items import views
 from application.auth import models
 from application.auth import views
 
-from application.category import models
-from application.category import views
+from application.categories import models
+from application.categories import views
 
 
 # kirjautuminen

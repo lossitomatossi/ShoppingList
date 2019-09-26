@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Category_id</th>
+      <th>Name</th>
+    </tr>
+    {% for category in categories %}
+    <tr>
+      <td>{{ category.id }}</td>
+      <td>{{ category.name }}</td>
+      <td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
