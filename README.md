@@ -5,6 +5,16 @@ A python based web project to manage your shopping needs. You can track which it
 
 [tsoha-shoppinglist](https://tsoha-shoppinglist.herokuapp.com/)
 
+All permissions user for heroku testing.
+```
+username: admin password: admin
+```
+
+## Features currently working in heroku
+- logging in and out
+- viewing added items (by default all items will be given a category_id of 1 which is the id for the default line in the category table)
+- adding items to the database and marking them as bought
+
 ## Features
 - create users
 - delete users (deleting a user will delete all your lists)
