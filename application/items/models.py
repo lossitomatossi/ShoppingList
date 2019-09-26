@@ -14,7 +14,7 @@ class Item(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
-    def __init__(self, name):
+    def __init__(self, name, amount):
         self.name = name
         self.amount = amount
         self.bought = False

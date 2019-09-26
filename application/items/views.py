@@ -12,7 +12,7 @@ def items_index():
 @app.route("/items/new/")
 @login_required
 def items_form():
-    return render_template("items/new.html", form = TaskForm)
+    return render_template("items/new.html", form = ItemForm)
 
 @app.route("/items/<item_id>/", methods=["POST"])
 @login_required
