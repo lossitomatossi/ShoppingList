@@ -33,7 +33,7 @@ def items_create():
         return render_template("items/new.html", form = form)
 
     i = Item(form.name.data, form.amount.data)
-    i.bought = form.bought
+    i.bought = form.bought.data
     i.account_id = current_user.id
     i.category_id = 1
 
