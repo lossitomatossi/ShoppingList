@@ -36,6 +36,7 @@ def items_create():
     i.bought = form.bought.data
     i.category = "default"
     i.account_id = current_user.id
+    i.category_id = 1
 
     db.session().add(i)
     db.session().commit()

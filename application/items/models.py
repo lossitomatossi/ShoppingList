@@ -10,6 +10,9 @@ class Item(Base):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'),
+                            nullable=False)
+
     def __init__(self, name, amount):
         self.name = name
         self.amount = amount
