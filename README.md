@@ -1,4 +1,5 @@
 # Disclaimer
+(when run locally, works in heroku)
 the app assumes in it's current state that you manually enter the first category before adding any items
 
 # ShoppingList
