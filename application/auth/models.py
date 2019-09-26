@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 
+from sqlalchemy.sql import text
+
 class User(Base):
 
     __tablename__ = "account"
@@ -27,3 +29,19 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+
+    @staticmethod
+    def find_users_with_no_items():
+        stmt = text("SELECT Account.id, Account.name FROM Account"
+                    " LEFT JOIN Item ON Item.account_id = Account.id"
+                    " WHERE (Item.bought IS null OR Item.bought = 1)"
+                    " GROUP BY Account.id"
+                    " HAVING COUNT(Item.id) = 0")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1]})
+
+        return response

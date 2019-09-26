@@ -1,7 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <p>
-    Hello world!
-  </p>
+<p>
+  Hello world!
+</p>
+
+{% if empty_shoppinglist is defined %}
+<p>
+  The following users have no items in their shoppinglist:
+</p>
+
+<ul>
+  {% for user in empty_shoppinglist %}
+  <li>
+    {{user.id}} {{user.name}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+
 {% endblock %}
