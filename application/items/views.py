@@ -32,9 +32,8 @@ def items_create():
     if not form.validate():
         return render_template("items/new.html", form = form)
 
-    i = Item(form.name.data)
+    i = Item(form.name.data, form.amount.data)
     i.bought = form.bought.data
-    i.amount = form.amount.data
     i.category = "default"
     i.account_id = current_user.id
 
