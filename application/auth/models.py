@@ -32,12 +32,12 @@ class User(Base):
 
 
     @staticmethod
-    def find_users_with_no_items():
+    def find_users_with_no_items(bought=0):
         stmt = text("SELECT Account.id, Account.name FROM Account"
                     " LEFT JOIN Item ON Item.account_id = Account.id"
-                    " WHERE (Item.bought IS null OR Item.bought = 1)"
+                    " WHERE (Item.bought IS null OR Item.bought = :bought)"
                     " GROUP BY Account.id"
-                    " HAVING COUNT(Item.id) = 0")
+                    " HAVING COUNT(Item.id) = 0").params(bought=bought)
         res = db.engine.execute(stmt)
 
         response = []
