@@ -32,7 +32,7 @@ class User(Base):
 
 
     @staticmethod
-    def find_users_with_no_items(bought=0):
+    def find_users_with_no_items(bought=True):
         stmt = text("SELECT Account.id, Account.name FROM Account"
                     " LEFT JOIN Item ON Item.account_id = Account.id"
                     " WHERE (Item.bought IS null OR Item.bought = :bought)"
