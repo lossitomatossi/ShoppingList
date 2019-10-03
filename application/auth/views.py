@@ -1,10 +1,10 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
-from application import app
+from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm
-from application.auth.forms import NewuserForm
+from application.auth.forms import SignupForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -26,16 +26,14 @@ def auth_logout():
     logout_user()
     return redirect(url_for("index"))
 
-@app.route("/auth/newuser")
-def auth_newuser():
-    return render_template("auth/newuser.html", form = NewuserForm())
+
+@app.route("/auth/signup/")
+def auth_signupform():
+    return render_template("auth/signupform.html", form = SignupForm())
 
 @app.route("/auth/", methods=["POST"])
 def users_create():
-    form = NewuserForm(request.form)
-
-    if not form.validate():
-        return render_template("auth/newuser.html", form = form)
+    form = SignupForm(request.form)
 
     u = User(form.name.data, form.username.data, form.password.data)
 

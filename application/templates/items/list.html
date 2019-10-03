@@ -4,14 +4,14 @@
   <table>
     <tr>
       <th>Item</th>
-      <th>Bought</th>
       <th>Amount</th>
+      <th>Bought</th>
     </tr>
     {% for item in items %}
     <tr>
       <td>{{ item.name }}</td>
-      <td>{{ item.bought }}</td>
       <td>{{ item.amount }}</td>
+      <td>{{ item.bought }}</td>
       <td>
         <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
           <input type="submit" value="Mark as bought!"/>
