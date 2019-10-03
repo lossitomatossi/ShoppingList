@@ -5,6 +5,8 @@ from application import app, db
 from application.items.models import Item
 from application.items.forms import ItemForm
 
+from sqlalchemy.sql import text
+
 @app.route("/items", methods=["GET"])
 def items_index():
     return render_template("items/list.html", items = Item.query.all())
@@ -22,6 +24,13 @@ def items_set_done(item_id):
     i.bought = True
     db.session().commit()
 
+    return redirect(url_for("items_index"))
+
+@app.route("/items/<item_id>/delete", methods=["POST"])
+@login_required
+def items_delete(item_id):
+    stmt = text("DELETE FROM ITEM WHERE Item.id = :id").params(id=item_id)
+    db.engine.execute(stmt)
     return redirect(url_for("items_index"))
 
 @app.route("/items/", methods=["POST"])

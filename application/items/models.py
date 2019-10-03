@@ -17,3 +17,7 @@ class Item(Base):
         self.amount = amount
         self.bought = False
         self.category = "default"
+
+    def delete_item_by_id(id):
+        stmt = text("DELETE FROM ITEM WHERE Item.id = :id").params(id=id)
+        db.engine.execute(stmt)
