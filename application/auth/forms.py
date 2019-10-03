@@ -20,6 +20,7 @@ class SignupForm(FlaskForm):
 
 
 class ChangePasswordForm(FlaskForm):
+    oldpassword = PasswordField("old password")
     password = PasswordField("new password")
     password2 = PasswordField("repeat new password")
 

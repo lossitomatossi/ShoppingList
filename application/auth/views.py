@@ -1,5 +1,5 @@
-from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask import render_template, request, redirect, url_for, flash
+from flask_login import login_user, logout_user, login_required
 
 from application import app, db
 from application.auth.models import User
@@ -33,11 +33,17 @@ def auth_signupform():
 
 @app.route("/auth/", methods=["POST"])
 def users_create():
-    form = SignupForm(request.form)
+    form2 = SignupForm(request.form)
 
-    u = User(form.name.data, form.username.data, form.password.data)
+    u = User(form2.name.data, form2.username.data, form2.password.data)
 
     db.session().add(u)
     db.session().commit()
 
     return redirect(url_for("auth_login"))
+
+@app.route("/auth/<username>", methods=["GET"])
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template("auth/userprofile.html", user = user)

@@ -1,29 +1,11 @@
-% extends "layout.html" %}
+{% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
-<form method="POST" action="{{ url_for('auth_profile') }}">
+<h1>User: {{ user.username }}</h1>
   <table>
     <tr>
-      <td>
-	       {{ form.password.label }}
-      </td>
-      <td>
-	       {{ form.password }}
-      </td>
+      <th>Change password:</th>
+      
     </tr>
-    <tr>
-      <td>
-        {{ form.password2.label }}
-      </td>
-      <td>
-        {{ form.password2 }}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-	<input type="submit" value="Change password"/>
-      </td>
-    </tr>
-</form>
+  </table>
 {% endblock %}
