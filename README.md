@@ -20,6 +20,7 @@ username: admin password: admin
 - adding items to the database and marking them as bought (both as you are adding them and also as you are updating them
 - you can list categories in /categories (link missing)
 - you can add new categories in /categories/new (link missing)
+- creating new users(validation wasn't working, so for now no it has been deleted)
 
 ## Features
 - create users
