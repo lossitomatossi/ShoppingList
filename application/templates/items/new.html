@@ -1,6 +1,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<body>
+  <h2>Categories</h2>
+  <ul class="list-group">
+    {% for category in categories %}
+    <li class="list-group-item" style="height: 30px; padding: 5px 15px;">{{ category.id }} {{ category.name }}</li>
+    {% endfor %}
+  </ul>
+  <h2>Form for adding new items</h2>
+  <h5>Only you can see your own items</h5>
+</body>
 <form method="POST" action="{{ url_for('items_create') }}">
   <table>
     <tr>

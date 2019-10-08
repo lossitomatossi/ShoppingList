@@ -1,17 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Category_id</th>
-      <th>Name</th>
-    </tr>
+
+<body>
+
+  <ul class="list-group">
     {% for category in categories %}
-    <tr>
-      <td>{{ category.id }}</td>
-      <td>{{ category.name }}</td>
-      <td>
-    </tr>
+    <li class="list-group-item" style="height: 30px; padding: 5px 15px;">{{ category.id }} {{ category.name }}</li>
     {% endfor %}
-  </table>
+  </ul>
+</body>
+
 {% endblock %}

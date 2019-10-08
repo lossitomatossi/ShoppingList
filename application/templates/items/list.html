@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<body>
+  <ul class="list-group">
+    {% for item in items %}
+    <li class="list-group-item"> {{ item.name  }} {{ item.amount }} {{ item.bought }}</li>
+    {% endfor %}
+  </ul>
+</body>
+
   <table>
     <tr>
       <th>Item</th>

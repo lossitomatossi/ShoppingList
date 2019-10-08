@@ -4,6 +4,8 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.items.models import Item
 from application.items.forms import ItemForm
+from application.categories.models import Category
+
 
 from sqlalchemy.sql import text
 
@@ -14,7 +16,7 @@ def items_index():
 @app.route("/items/new/")
 @login_required
 def items_form():
-    return render_template("items/new.html", form = ItemForm())
+    return render_template("items/new.html", form = ItemForm(), categories = Category.query.all())
 
 @app.route("/items/<item_id>/", methods=["POST"])
 @login_required
