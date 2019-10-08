@@ -22,6 +22,7 @@
   </head>
 
 <body class="text-center">
+  <h1>Welcome to the login page</h1>
   <form action="{{ url_for('auth_login') }}" method="POST">
     <p class="text-danger">
       {{ error}}
@@ -40,7 +41,7 @@
     </div>
 
     <div class="col-md-6 offset-md-4">
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary center-block">
         <i class="fas fa-sign-in-alt"></i> Login
       </button>
     </div>
