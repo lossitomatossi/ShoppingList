@@ -23,7 +23,10 @@ def items_form():
 def items_set_done(item_id):
 
     i = Item.query.get(item_id)
-    i.bought = True
+    if i.bought == False:
+        i.bought = True
+    elif i.bought == True:
+        i.bought = False
     db.session().commit()
 
     return redirect(url_for("items_index"))

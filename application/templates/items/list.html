@@ -22,7 +22,7 @@
       <td>{{ item.bought }}</td>
       <td>
         <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
-          <input type="submit" value="Mark as bought!"/>
+          <input type="submit" value="Change status!"/>
         </form>
         <form method="POST" action="{{ url_for('items_delete', item_id=item.id) }}">
           <input type="submit" value="Delete!"/>
