@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.items.models import Item
-from application.items.forms import ItemForm
+from application.items.forms import ItemForm, ItemCreateForm
 from application.categories.models import Category
 
 
@@ -16,7 +16,7 @@ def items_index():
 @app.route("/items/new/")
 @login_required
 def items_form():
-    return render_template("items/new.html", form = ItemForm(), categories = Category.query.all())
+    return render_template("items/new.html", form = ItemCreateForm(), categories = Category.query.all())
 
 @app.route("/items/<item_id>/", methods=["POST"])
 @login_required
@@ -41,7 +41,9 @@ def items_delete(item_id):
 @app.route("/items/", methods=["POST"])
 @login_required
 def items_create():
-    form = ItemForm(request.form)
+    form = ItemCreateForm(request.form)
+    list = Category.query.all()
+    form.category.choices = [(c.id, c.name) for c in list]
 
     if not form.validate():
         return render_template("items/new.html", form = form)
@@ -49,7 +51,7 @@ def items_create():
     i = Item(form.name.data, form.amount.data)
     i.bought = form.bought.data
     i.account_id = current_user.id
-    i.category_id = 1
+    i.category_id = form.category.data
 
     db.session().add(i)
     db.session().commit()
