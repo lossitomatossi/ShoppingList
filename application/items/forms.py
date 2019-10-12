@@ -15,7 +15,7 @@ class ItemCreateForm(FlaskForm):
     name = StringField("Name", [validators.Length(min=2)])
     bought = BooleanField("Bought")
     amount = IntegerField("Amount")
-    category = SelectField(u'Group', coerce=int)
+    category = SelectField(u'Group', [validators.Optional()], coerce=int)
 
     class Meta:
         crsf = False
