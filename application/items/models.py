@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 
+from sqlalchemy.sql import text
+
 class Item(Base):
     name = db.Column(db.String(144), nullable=False)
     amount = db.Column(db.Integer, nullable=True)
@@ -24,15 +26,13 @@ class Item(Base):
 
     @staticmethod
     def find_all_items_by_id(id):
-        stmt = ("SELECT * FROM Item WHERE Item.account_id = :id").params(id=id)
+        stmt = text("SELECT Item.id, Item.name, Item.bought FROM Item"
+                    " WHERE (Item.account_id = :id)").params(id=id)
         res = db.engine.execute(stmt)
 
         result = []
         for row in res:
-            result.append({"item_id": row[0],
-                            "item_name": row[1],
-                            "item_bought": row[2],
-                            "item_account_id": row[3]})
-
-
+            result.append({"id": row[0],
+                            "name": row[1],
+                            "bought": row[2]})
         return result

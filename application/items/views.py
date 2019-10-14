@@ -16,7 +16,7 @@ def items_index():
     for item in items :
         if item.account_id != current_user.id:
             items.remove(item)
-    return render_template("items/list.html", items = items)
+    return render_template("items/list.html", items = Item.find_all_items_by_id(current_user.id))
 
 @app.route("/items/all", methods=["GET"])
 def items_all():
