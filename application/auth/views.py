@@ -1,10 +1,12 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm
 from application.auth.forms import SignupForm
+
+from application.items.models import Item
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -46,4 +48,4 @@ def users_create():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template("auth/userprofile.html", user = user)
+    return render_template("auth/userprofile.html", user = user, amount=Item.amount_of_items_by_userid(current_user.id))

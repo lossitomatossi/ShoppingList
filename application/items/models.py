@@ -36,3 +36,15 @@ class Item(Base):
                             "name": row[1],
                             "bought": row[2]})
         return result
+
+    @staticmethod
+    def amount_of_items_by_userid(id):
+        stmt = text("SELECT COUNT(id) FROM Item"
+                    " WHERE (Item.account_id = :id)").params(id=id)
+
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            result = row[0]
+
+        return result
