@@ -10,7 +10,16 @@ from application.categories.models import Category
 from sqlalchemy.sql import text
 
 @app.route("/items", methods=["GET"])
+@login_required
 def items_index():
+    items = Item.query.all()
+    for item in items :
+        if item.account_id != current_user.id:
+            items.remove(item)
+    return render_template("items/list.html", items = items)
+
+@app.route("/items/all", methods=["GET"])
+def items_all():
     return render_template("items/list.html", items = Item.query.all())
 
 @app.route("/items/new/")
