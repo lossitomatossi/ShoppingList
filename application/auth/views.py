@@ -53,11 +53,20 @@ def user(username):
     amount = Item.amount_of_items_by_userid(current_user.id)
     return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
 
-@app.route("/auth/<username>", methods=["POST"])
+@app.route("/auth/<username>/changePassword", methods=["POST"])
 def changePassword():
+    username = current_user.username
     form = ChangePasswordForm(request.form)
 
     old = find_password_with_userID(current_user.id)
 
     if old != form.oldpassword.data:
         return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
+
+    if form.password.data != form.password2.data:
+        return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
+
+    u = User.query.get(user.id)
+    u.password=form.password.data
+
+    db.session().commit()

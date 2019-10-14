@@ -48,3 +48,15 @@ class User(Base):
             response.append({"id":row[0], "name":row[1]})
 
         return response
+
+    @staticmethod
+    def find_password_with_userID(id):
+        stmt = text("SELECT password FROM account"
+                    " WHERE id = :id").params(id=id)
+
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            response = row[0]
+        
+        return response
