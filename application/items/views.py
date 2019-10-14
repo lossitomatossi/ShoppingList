@@ -12,10 +12,6 @@ from sqlalchemy.sql import text
 @app.route("/items", methods=["GET"])
 @login_required
 def items_index():
-    items = Item.query.all()
-    for item in items :
-        if item.account_id != current_user.id:
-            items.remove(item)
     return render_template("items/list.html", items = Item.find_all_items_by_id(current_user.id))
 
 @app.route("/items/all", methods=["GET"])

@@ -5,6 +5,7 @@ from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm
 from application.auth.forms import SignupForm
+from application.auth.forms import ChangePasswordForm
 
 from application.items.models import Item
 
@@ -48,4 +49,15 @@ def users_create():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template("auth/userprofile.html", user = user, amount=Item.amount_of_items_by_userid(current_user.id))
+    form = ChangePasswordForm()
+    amount = Item.amount_of_items_by_userid(current_user.id)
+    return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
+
+@app.route("/auth/<username>", methods=["POST"])
+def changePassword():
+    form = ChangePasswordForm(request.form)
+
+    old = find_password_with_userID(current_user.id)
+
+    if old != form.oldpassword.data:
+        return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
