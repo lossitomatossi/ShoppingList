@@ -3,7 +3,7 @@
 {% block body %}
 
 <body>
-
+  <h1>Categories in the database: {{ categories|length }}</h1>
   <ul class="list-group">
     {% for category in categories %}
     <li class="list-group-item" style="height: 30px; padding: 5px 15px;">{{ category.id }} {{ category.name }}</li>
