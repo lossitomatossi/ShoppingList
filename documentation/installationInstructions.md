@@ -28,11 +28,11 @@ If the file was packaged in zip format then extract it to your desired folder.
 ```
 ~/projekti$ source venv/bin/activate
 ```
-## Installing requirements
+## Installing required packages with pip
 ```
 (venv) ~/projekti$ pip install -r requirements.txt
 ```
--If there are problems with "wheel", then try the following:
+- If there are problems with "wheel", then try the following:
 ```
 (venv) ~/projekti$ pip install wheel
 ```
