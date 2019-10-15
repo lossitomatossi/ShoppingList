@@ -39,4 +39,4 @@ username: admin password: admin
 - assign items different categories
 
 ## Database diagram
-![diagram](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/tietokantakaavio.png)
+![diagram](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/tietokantakaavio.png)
