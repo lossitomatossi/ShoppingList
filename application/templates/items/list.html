@@ -11,7 +11,12 @@
       <th scope="col">Delete</th>
     </tr>
   </thead>
+
   <tbody>
+    {% if items|length < 1 %}
+      <h1>You have no items</h1>
+      <a class="link" href="{{ url_for('items_form') }}">Click here to start adding</a>
+    {% endif %}
     {% for item in items %}
     <tr>
       <td>{{ item.id }}</td>
