@@ -25,15 +25,15 @@
       <td>
         <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
           {% if item.bought == 0 %}
-            <button name="name" value="{{ item.bought }}" type="submit">False</button>
+            <button name="name" value="{{ item.bought }}" type="submit">No</button>
           {% else %}
-            <button name="name" value="{{ item.bought }}" type="submit">True</button>
+            <button name="name" value="{{ item.bought }}" type="submit">Yes</button>
           {% endif %}
         </form>
       </td>
       <td>
         <form method="POST" action="{{ url_for('items_delete', item_id=item.id) }}">
-          <input type="submit" value="Delete!"/>
+          <button name="name" class="btn btn-danger" type="submit">Delete!</button>
         </form>
       </td>
     </tr
