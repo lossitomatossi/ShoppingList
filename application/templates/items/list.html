@@ -24,7 +24,11 @@
       <td>{{ item.amount }}</td>
       <td>
         <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
-          <input type="submit" value={{ item.bought }}>
+          {% if item.bought == 0 %}
+            <button name="name" value="{{ item.bought }}" type="submit">False</button>
+          {% else %}
+            <button name="name" value="{{ item.bought }}" type="submit">True</button>
+          {% endif %}
         </form>
       </td>
       <td>
