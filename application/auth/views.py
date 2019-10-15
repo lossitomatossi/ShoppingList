@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
+from sqlalchemy.sql import text
 from application.auth.models import User
 from application.auth.forms import LoginForm
 from application.auth.forms import SignupForm
@@ -68,5 +69,16 @@ def changePassword():
 
     u = User.query.get(user.id)
     u.password=form.password.data
-
+    db.session().add(u)
     db.session().commit()
+
+@app.route("/auth/deleteAll", methods=["POST"])
+@login_required
+def deletemyitems():
+    account_id = current_user.id
+
+    stmt = text("DELETE FROM Item"
+                " WHERE Item.account_id = :account_id").params(account_id=account_id)
+
+    db.engine.execute(stmt)
+    return redirect(url_for("items_index"))

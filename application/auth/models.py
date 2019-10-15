@@ -1,6 +1,6 @@
 from application import db
 from application.models import Base
-
+from application.items.models import Item
 from sqlalchemy.sql import text
 
 class User(Base):
@@ -58,5 +58,12 @@ class User(Base):
 
         for row in res:
             response = row[0]
-        
+
         return response
+
+    @staticmethod
+    def delete_all_users_items(account_id):
+        stmt = text("DELETE FROM Item"
+                    " WHERE Item.account_id = :account_id").params(account_id=account_id)
+
+        db.engine.execute(stmt)
