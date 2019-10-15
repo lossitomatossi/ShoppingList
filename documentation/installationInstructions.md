@@ -11,8 +11,8 @@ When run locally, you need Python3 and sqlite3. You can download them using the 
 git clone https://github.com/lossitomatossi/ShoppingList/
 ```
 
-- Or click on the green button on the right
-KUVA MENEE TÄHÄN
+- Or click the green button on the right
+![ShoppingList frontpage](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/asennusohje1.png)
 
 If the file was packaged in zip format then extract it to your desired folder.
 
