@@ -26,7 +26,7 @@ class Item(Base):
 
     @staticmethod
     def find_all_items_by_id(id):
-        stmt = text("SELECT Item.id, Item.name, Item.bought FROM Item"
+        stmt = text("SELECT Item.id, Item.name, Item.bought, Item.amount FROM Item"
                     " WHERE (Item.account_id = :id)").params(id=id)
         res = db.engine.execute(stmt)
 
@@ -34,7 +34,8 @@ class Item(Base):
         for row in res:
             result.append({"id": row[0],
                             "name": row[1],
-                            "bought": row[2]})
+                            "bought": row[2],
+                            "amount": row[3]})
         return result
 
     @staticmethod
