@@ -48,7 +48,6 @@ def items_delete(item_id):
 def items_create():
     form = ItemCreateForm(request.form)
     list = Category.query.all()
-    form.category.choices = [(c.id, c.id) for c in list]
 
     if not form.validate():
         return render_template("items/new.html", form = form, categories = list)
