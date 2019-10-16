@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.items.models import Item
-from application.items.forms import ItemForm, ItemCreateForm
+from application.items.forms import ItemForm
 from application.categories.models import Category
 from application.lists.models import List
 
@@ -25,7 +25,7 @@ def items_form():
     default = List.user_has_default_list(current_user.id)
     if default != "default":
         List.create_default_list_for_user(current_user.id)
-    return render_template("items/new.html", form = ItemCreateForm(), categories = Category.query.all())
+    return render_template("items/new.html", form = ItemForm(), categories = Category.query.all())
 
 @app.route("/items/<item_id>/", methods=["POST"])
 @login_required
@@ -50,7 +50,7 @@ def items_delete(item_id):
 @app.route("/items/", methods=["POST"])
 @login_required
 def items_create():
-    form = ItemCreateForm(request.form)
+    form = ItemForm(request.form)
     list = Category.query.all()
 
     if not form.validate():

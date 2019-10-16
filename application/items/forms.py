@@ -8,16 +8,7 @@ class ItemForm(FlaskForm):
     name = StringField("Name", [InputRequired(), Length(min=1,max=144, message=msg_name_length)])
     bought = BooleanField("Bought", [InputRequired()])
     amount = IntegerField("Amount", [InputRequired()])
-
-    class Meta:
-        csrf = False
-
-
-class ItemCreateForm(FlaskForm):
-    name = StringField("Name", [InputRequired(), Length(min=1,max=144, message=msg_name_length)])
-    bought = BooleanField("Bought", [InputRequired()])
-    amount = IntegerField("Amount", [InputRequired()])
     category = IntegerField("Category", [InputRequired()])
 
     class Meta:
-        crsf = False
+        csrf = False
