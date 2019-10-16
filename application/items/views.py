@@ -5,6 +5,7 @@ from application import app, db
 from application.items.models import Item
 from application.items.forms import ItemForm, ItemCreateForm
 from application.categories.models import Category
+from application.lists.models import List
 
 
 from sqlalchemy.sql import text
@@ -21,6 +22,9 @@ def items_all():
 @app.route("/items/new/")
 @login_required
 def items_form():
+    default = List.user_has_default_list(current_user.id)
+    if default != "default":
+        List.create_default_list_for_user(current_user.id)
     return render_template("items/new.html", form = ItemCreateForm(), categories = Category.query.all())
 
 @app.route("/items/<item_id>/", methods=["POST"])
