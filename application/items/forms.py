@@ -6,7 +6,7 @@ from application.utils.errormessages import msg_name_length
 
 class ItemForm(FlaskForm):
     name = StringField("Name", [InputRequired(), Length(min=1,max=144, message=msg_name_length)])
-    bought = BooleanField("Bought", [InputRequired()])
+    bought = BooleanField("Bought")
     amount = IntegerField("Amount", [InputRequired()])
     category = IntegerField("Category", [InputRequired()])
 
