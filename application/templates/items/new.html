@@ -15,16 +15,7 @@
 
   <body>
     <h1>Adding a new item</h1>
-    <!-- Shows all categories as a list -->
 
-  <div class="form-group">
-    <label for="categorySelect">Select Category</label>
-    <select class="form-control" id="categorySelect">
-      {% for category in categories %}
-      <option>{{ category.id }} {{category.name }}</option>
-      {% endfor %}
-    </select>
-  </div>
   {% for error in form.name.errors %}
   <li>{{ error}}</li>
   {% endfor %}
