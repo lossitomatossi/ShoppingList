@@ -76,6 +76,9 @@ from application.auth import views
 from application.categories import models
 from application.categories import views
 
+from application.lists import models
+from application.lists import views
+
 
 # login functionality part 2
 
