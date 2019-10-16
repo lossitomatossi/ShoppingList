@@ -8,6 +8,7 @@
     <a href="{{ url_for('list_page', list_id=list.id) }}" class="list-group-item" style="height: 30px; padding: 5px 15px;">{{ list.id }} {{ list.name }}</a>
     {% endfor %}
   </ul>
+  <a href="{{ url_for('lists_form')}}">Click here to add lists</a>
 </body>
 
 {% endblock %}
