@@ -52,25 +52,24 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     form = ChangePasswordForm()
     amount = Item.amount_of_items_by_userid(current_user.id)
-    return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
+    return render_template("auth/userprofile.html", user = user, amount=amount, form = form, username = username)
 
-@app.route("/auth/<username>/changePassword", methods=["POST"])
+
+@app.route("/auth/changePassword", methods=["POST"])
+@login_required
 def changePassword():
     username = current_user.username
     form = ChangePasswordForm(request.form)
 
-    old = find_password_with_userID(current_user.id)
-
-    if old != form.oldpassword.data:
-        return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
-
-    if form.password.data != form.password2.data:
-        return render_template("auth/userprofile.html", user = user, amount=amount, form = form)
+    if not form.validate():
+        amount = Item.amount_of_items_by_userid(current_user.id)
+        return render_template("auth/userprofile.html", user = user, amount=amount, form = form, username = username)
 
     u = User.query.get(user.id)
     u.password=form.password.data
-    db.session().add(u)
     db.session().commit()
+
+    return redirect(url_for("items_index"))
 
 @app.route("/auth/deleteAll", methods=["POST"])
 @login_required
