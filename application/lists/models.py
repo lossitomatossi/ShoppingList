@@ -38,3 +38,24 @@ class List(Base):
             result = row[0]
 
         return result
+
+    @staticmethod
+    def user_has_default_list(id):
+        stmt = text("SELECT name FROM List"
+        " WHERE (List.account_id = :id)"
+        " AND name = 'default'").params(id=id)
+        res = db.engine.execute(stmt)
+
+        result = []
+        for row in res:
+                result = row[0]
+
+        return result
+
+    @staticmethod
+    def create_default_list_for_user(id):
+        l = List("default", "default list to ensure proper functioning")
+        l.account_id = id
+
+        db.session.add(l)
+        db.session.commit()

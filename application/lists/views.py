@@ -13,7 +13,13 @@ from sqlalchemy.sql import text
 @app.route("/lists", methods=["GET"])
 @login_required
 def lists_index():
-    return render_template("lists/list.html", lists = List.find_all_lists_by_id(current_user.id))
+
+    default = List.user_has_default_list(current_user.id)
+    if default != "default":
+        List.create_default_list_for_user(current_user.id)
+
+    lists = List.find_all_lists_by_id(current_user.id)
+    return render_template("lists/list.html", lists = lists)
 
 @app.route("/lists/all", methods=["GET"])
 def lists_all():
