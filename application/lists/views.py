@@ -23,3 +23,25 @@ def lists_all():
 @login_required
 def lists_form():
     return render_template("lists/new.html", form = ListForm())
+
+
+@app.route("/lists/", methods=["POST"])
+@login_required
+def lists_create():
+    form = ListForm(request.form)
+
+    if not form.validate():
+        return render_template("lists/new.html", form = form)
+
+    l = List(form.name.data, form.info.data)
+    l.account_id = current_user.id
+
+    db.session().add(l)
+    db.session().commit()
+
+    return redirect(url_for("lists_index"))
+
+@app.route("/lists/<list_id>", methods=["GET"])
+@login_required
+def list_page(list_id):
+    return render_template("/lists/info.html", list = List.query.get(list_id))
