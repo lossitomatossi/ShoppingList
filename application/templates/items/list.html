@@ -7,11 +7,12 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Amount</th>
+      <th scope="col">List</th>
+      <th scope="col">Category</th>
       <th scope="col">Bought</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
-
   <tbody>
     {% if items|length < 1 %}
       <h1>You have no items</h1>
@@ -22,6 +23,8 @@
       <td>{{ item.id }}</td>
       <td>{{ item.name }}</td>
       <td>{{ item.amount }}</td>
+      <td>{{ listnames[item.list_id] }}</td>
+      <td>{{ categoryNames[item.category_id-1].name }}</td>
       <td>
         <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
           {% if item.bought == 0 %}
@@ -36,8 +39,9 @@
           <button name="name" class="btn btn-danger" type="submit">Delete!</button>
         </form>
       </td>
-    </tr
+    </tr>
     {% endfor %}
   </tbody>
 </table>
+</script>
 {% endblock %}

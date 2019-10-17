@@ -13,7 +13,10 @@ from sqlalchemy.sql import text
 @app.route("/items", methods=["GET"])
 @login_required
 def items_index():
-    return render_template("items/list.html", items = Item.find_all_items_by_id(current_user.id))
+    categoryNames = Category.find_all_category_names()
+    listnames = List.find_all_lists_by_id_dictionary(current_user.id)
+    items = Item.find_all_items_by_id(current_user.id)
+    return render_template("items/list.html", items = items, categoryNames = categoryNames, listnames = listnames)
 
 @app.route("/items/all", methods=["GET"])
 def items_all():

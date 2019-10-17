@@ -29,6 +29,18 @@ class List(Base):
         return result
 
     @staticmethod
+    def find_all_lists_by_id_dictionary(id):
+        stmt = text("SELECT List.id, List.name FROM List"
+                    " WHERE (List.account_id = :id)").params(id=id)
+        res = db.engine.execute(stmt)
+
+        result = {}
+        for row in res:
+            result[row[0]] = row[1]
+            
+        return result
+
+    @staticmethod
     def amount_of_lists_by_userid(id):
         stmt = text("SELECT COUNT(id) FROM List"
                     " WHERE (List.account_id = :id)").params(id=id)
