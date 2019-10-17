@@ -50,4 +50,6 @@ def lists_create():
 @app.route("/lists/<list_id>", methods=["GET"])
 @login_required
 def list_page(list_id):
-    return render_template("/lists/info.html", list = List.query.get(list_id))
+    categoryNames = Category.find_all_category_names()
+    items = List.find_items_by_list(list_id)
+    return render_template("/lists/info.html", list = List.query.get(list_id), items = items, categoryNames = categoryNames)

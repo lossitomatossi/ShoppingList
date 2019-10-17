@@ -37,7 +37,7 @@ class List(Base):
         result = {}
         for row in res:
             result[row[0]] = row[1]
-            
+
         return result
 
     @staticmethod
@@ -85,3 +85,19 @@ class List(Base):
 
         db.session.add(l)
         db.session.commit()
+
+    @staticmethod
+    def find_items_by_list(id):
+        stmt = text("SELECT Item.id, Item.name, Item.bought, Item.amount, Item.category_id FROM Item"
+        " WHERE (Item.list_id = :id)").params(id=id)
+
+        res = db.engine.execute(stmt)
+        result = []
+
+        for row in res:
+            result.append({"id": row[0],
+                            "name": row[1],
+                            "bought": row[2],
+                            "amount": row[3],
+                            "category_id": row[4]})
+        return result

@@ -5,6 +5,48 @@
 <body>
   <h1>List: {{ list.name }}</h1>
   <small>Additional info: {{ list.info }}</small>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Category</th>
+        <th scope="col">Bought</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if items|length < 1 %}
+        <h1>This list is empty</h1>
+      {% else %}
+        <h1>This list has {{ items|length }} items</h1>
+      {% endif %}
+      {% for item in items %}
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.amount }}</td>
+        <td>{{ categoryNames[item.category_id-1].name }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
+            {% if item.bought == 0 %}
+              <button name="name" value="{{ item.bought }}" type="submit">No</button>
+            {% else %}
+              <button name="name" value="{{ item.bought }}" type="submit">Yes</button>
+            {% endif %}
+          </form>
+        </td>
+        <td>
+          <form method="POST" action="{{ url_for('items_delete', item_id=item.id) }}">
+            <button name="name" class="btn btn-danger" type="submit">Delete!</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </body>
 
 {% endblock %}
