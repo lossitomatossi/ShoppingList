@@ -87,5 +87,17 @@ class User(Base):
         stmt = text("INSERT INTO Account"
                     " (name, username, password, role)"
                     " values ('admin', 'admin', 'admin', 'ADMIN')")
-                    
+
         db.engine.execute(stmt)
+
+    @staticmethod
+    def list_all_users():
+        stmt = text("SELECT id, username, role from Account")
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "username":row[1], "role":row[2]})
+
+        return response

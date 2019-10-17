@@ -82,3 +82,23 @@ def deletemyitems():
 
     db.engine.execute(stmt)
     return redirect(url_for("items_index"))
+
+@app.route("/users", methods=["GET"])
+@login_required
+def list_users():
+    users = User.list_all_users()
+    return render_template("auth/users.html", users = users)
+
+@app.route("/users/<user_id>/", methods=["POST"])
+@login_required
+def users_make_admin(user_id):
+
+    u = User.query.get(user_id)
+    if u.role =='ADMIN':
+        u.role = 'USER'
+    else:
+        u.role = 'ADMIN'
+
+    db.session().commit()
+
+    return redirect(url_for("list_users"))
