@@ -3,19 +3,6 @@
 {% block body %}
 <h1>Welcome to ShoppingList</h1>
 
-{% if empty_shoppinglist is defined %}
-<p>
-  The following users have no items in their shoppinglist:
-</p>
-
-<ul>
-  {% for user in empty_shoppinglist %}
-  <li>
-    {{user.id}} {{user.name}}
-  </li>
-  {% endfor %}
-</ul>
-{% endif %}
 {% if msg %}
   <div class="alert alert-primary">{{ msg }}</div>
 {% endif %}

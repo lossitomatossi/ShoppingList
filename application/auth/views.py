@@ -91,7 +91,8 @@ def list_users():
     if current_user.role != "ADMIN":
         return render_template("index.html", msg=msg_admin_feature)
     users = User.list_all_users()
-    return render_template("auth/users.html", users = users)
+    empty_shoppinglist=User.find_users_with_no_items()
+    return render_template("auth/users.html", users = users, empty_shoppinglist = empty_shoppinglist)
 
 @app.route("/users/<user_id>/", methods=["POST"])
 @login_required

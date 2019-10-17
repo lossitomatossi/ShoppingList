@@ -2,25 +2,11 @@
 <!DOCTYPE html>
 {% block body %}
 <form method="POST" action="{{ url_for('categories_create') }}">
-  <table>
-    <tr>
-      <td>
-        {{ form.name.label }}
-      </td>
-      <td>
-        {{ form.name }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.name.erros %}
-          <li>{{ error}}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-      <td colspan="2">
-        <input type="submit" value="Add a new category"/>
-      </td>
-    </tr>
-  </form>
+  <div class="form-group">
+    <label for="name">Category name</label>
+    <input type="text" name="name" id="name" class="form-control" required>
+    <div class="invalid-feedback">Category name required! The maximum length for a name is 144 characters</div>
+  </div>
+  <button type="submit" class="btn btn-outline-primary">Add a new category</button>
+</form>
   {% endblock %}

@@ -4,6 +4,23 @@
 
 <body>
   <h1>Registered accounts : {{ users|length }}</h1>
+
+  {% if empty_shoppinglist is defined %}
+  <h2>
+    Users with no items:
+  </h2>
+
+  <ul class="list-group">
+    {% for user in empty_shoppinglist %}
+    <li class="list-group-item list-group-item-warning" style="height: 30px; padding: 5px 15px;">Account_id: {{ user.id }} Username: {{ user.name }}</li>
+    {% endfor %}
+  </ul>
+
+  {% endif %}
+  <h2>Roles of users:</h2>
+
+
+
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
