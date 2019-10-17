@@ -36,7 +36,7 @@ class User(Base):
         return True
 
     def roles(self):
-        return self.role
+        return [self.role]
 
 
     @staticmethod

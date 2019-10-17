@@ -10,6 +10,7 @@ from application.auth.forms import ChangePasswordForm
 
 from application.items.models import Item
 from application.lists.models import List
+from application.utils.errormessages import msg_admin_feature
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -87,12 +88,16 @@ def deletemyitems():
 @app.route("/users", methods=["GET"])
 @login_required
 def list_users():
+    if current_user.role != "ADMIN":
+        return render_template("index.html", msg=msg_admin_feature)
     users = User.list_all_users()
     return render_template("auth/users.html", users = users)
 
 @app.route("/users/<user_id>/", methods=["POST"])
 @login_required
 def users_make_admin(user_id):
+    if current_user.role != "ADMIN":
+        return render_template("index.html", msg=msg_admin_feature)
 
     u = User.query.get(user_id)
     if u.role =='ADMIN':
@@ -107,12 +112,16 @@ def users_make_admin(user_id):
 @app.route("/users/amounts", methods=["GET"])
 @login_required
 def list_users_with_item_amounts():
+    if current_user.role != "ADMIN":
+        return render_template("index.html", msg=msg_admin_feature)
     users = User.item_amounts_for_everyone()
     return render_template("auth/amounts.html", users = users)
 
 @app.route("/users/amounts/<user_id>/", methods=["POST"])
 @login_required
 def admin_delete_user(user_id):
+    if current_user.role != "ADMIN":
+        return render_template("index.html", msg=msg_admin_feature)
     Item.delete_items_by_userid(user_id)
     List.delete_lists_by_userid(user_id)
     User.delete_user_by_userid(user_id)

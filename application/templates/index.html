@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 <!DOCTYPE html>
 {% block body %}
-<p>
-  Hello world!
-</p>
+<h1>Welcome to ShoppingList</h1>
 
 {% if empty_shoppinglist is defined %}
 <p>
@@ -17,7 +15,9 @@
   </li>
   {% endfor %}
 </ul>
-
+{% endif %}
+{% if msg %}
+  <div class="alert alert-primary">{{ msg }}</div>
 {% endif %}
 
 {% endblock %}

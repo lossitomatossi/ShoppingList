@@ -6,6 +6,7 @@ from application.items.models import Item
 from application.items.forms import ItemForm
 from application.categories.models import Category
 from application.lists.models import List
+from application.utils.errormessages import msg_admin_feature
 
 
 from sqlalchemy.sql import text
@@ -19,7 +20,10 @@ def items_index():
     return render_template("items/list.html", items = items, categoryNames = categoryNames, listnames = listnames)
 
 @app.route("/items/all", methods=["GET"])
+@login_required
 def items_all():
+    if current_user.role != "ADMIN":
+        return render_template("index.html", msg=msg_admin_feature)
     categoryNames = Category.find_all_category_names()
     listnames = List.find_all_list_names()
     items = Item.query.all()
@@ -56,6 +60,8 @@ def items_delete(item_id):
 @app.route("/items/all/<item_id>/delete", methods=["POST"])
 @login_required
 def items_all_delete(item_id):
+    if current_user.role != "ADMIN":
+        return render_template("index.html", msg=msg_admin_feature)
     stmt = text("DELETE FROM ITEM WHERE Item.id = :id").params(id=item_id)
     db.engine.execute(stmt)
     return redirect(url_for("items_all"))
