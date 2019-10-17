@@ -21,6 +21,9 @@
         <button type="submit" class="btn btn-primary" form="passwordfrom">
           Change password
         </button>
+        <h1>Form Errors</h1>
+      {{ form.errors }}
+      {{ form.csrf_token() }}
     </div>
   </form>
   <form action="{{ url_for('deletemyitems') }}" method="POST">

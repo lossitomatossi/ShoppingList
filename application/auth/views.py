@@ -66,7 +66,7 @@ def changePassword():
         amount = Item.amount_of_items_by_userid(current_user.id)
         return render_template("auth/userprofile.html", user = user, amount=amount, form = form, username = username)
 
-    u = User.query.get(user.id)
+    u = User.query.get(current_user.id)
     u.password=form.password.data
     db.session().commit()
 
