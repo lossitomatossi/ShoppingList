@@ -61,3 +61,10 @@ class Item(Base):
         stmt = text("DELETE From Item"
                     " WHERE Item.account_id = :id").params(id=id)
         db.engine.execute(stmt)
+
+    @staticmethod
+    def update_item(id, name, amount, bought, list_id, category_id):
+        stmt = text("UPDATE Item"
+                    " SET name = :name, amount = :amount, bought = :bought, list_id = :list_id, category_id = :category_id"
+                    " WHERE id = :id").params(id=id, name=name, amount=amount, bought=bought, list_id=list_id, category_id=category_id)
+        db.engine.execute(stmt)

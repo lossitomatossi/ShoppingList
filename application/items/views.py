@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.items.models import Item
-from application.items.forms import ItemForm
+from application.items.forms import ItemForm, ItemEditForm
 from application.categories.models import Category
 from application.lists.models import List
 from application.utils.errormessages import msg_admin_feature
@@ -47,6 +47,36 @@ def items_set_done(item_id):
     elif i.bought == True:
         i.bought = False
     db.session().commit()
+
+    return redirect(url_for("items_index"))
+
+@app.route("/items/<item_id>", methods=["GET"])
+@login_required
+def edit_item(item_id):
+    item = Item.query.get(item_id)
+    form = ItemEditForm()
+    lists = List.find_all_lists_by_id(current_user.id)
+    categories = Category.query.all()
+    return render_template("items/edit.html", item = item, form = form, lists = lists, categories = categories)
+
+@app.route("/items/<item_id>/", methods=["POST"])
+@login_required
+def post_edit_item(item_id):
+    form = ItemCreateForm(request.form)
+    list = Category.query.all()
+
+    if not form.validate():
+        return render_template("items/edit.html", form = form, categories = list)
+
+    i = Item.query.get(item_id)
+    i.name = form.name.data
+    i.amount = form.amount.data
+    i.bought = form.bought.data
+    i.account_id = current_user.id
+    i.category_id = form.category.data
+    i.list_id = form.list.data
+
+    update_item(1, "name", 13, 0, 1, 0)
 
     return redirect(url_for("items_index"))
 
