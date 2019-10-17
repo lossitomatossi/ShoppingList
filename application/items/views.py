@@ -23,7 +23,7 @@ def items_all():
     categoryNames = Category.find_all_category_names()
     listnames = List.find_all_list_names()
     items = Item.query.all()
-    return render_template("items/list.html", items = items, categoryNames = categoryNames, listnames = listnames)
+    return render_template("items/all.html", items = items, categoryNames = categoryNames, listnames = listnames)
 
 @app.route("/items/new/")
 @login_required
@@ -52,6 +52,14 @@ def items_delete(item_id):
     stmt = text("DELETE FROM ITEM WHERE Item.id = :id").params(id=item_id)
     db.engine.execute(stmt)
     return redirect(url_for("items_index"))
+
+@app.route("/items/all/<item_id>/delete", methods=["POST"])
+@login_required
+def items_all_delete(item_id):
+    stmt = text("DELETE FROM ITEM WHERE Item.id = :id").params(id=item_id)
+    db.engine.execute(stmt)
+    return redirect(url_for("items_all"))
+
 
 @app.route("/items/", methods=["POST"])
 @login_required

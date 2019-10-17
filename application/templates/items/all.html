@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+<!DOCTYPE html>
+{% block body %}
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Amount</th>
+      <th scope="col">List</th>
+      <th scope="col">Category</th>
+      <th scope="col">Bought</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if items|length < 1 %}
+      <h1>There are no items</h1>
+    {% else %}
+      <h1>There are {{ items|length }} items</h1>
+    {% endif %}
+    {% for item in items %}
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.amount }}</td>
+      <td>{{ listnames[item.list_id] }}</td>
+      <td>{{ categoryNames[item.category_id] }}</td>
+      {% if item.bought == 0 %}
+        <td>False</td>
+      {% else %}
+        <td>True</td>
+      {% endif %}
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('items_all_delete', item_id=item.id) }}">
+          <button name="name" class="btn btn-danger" type="submit">Delete!</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
