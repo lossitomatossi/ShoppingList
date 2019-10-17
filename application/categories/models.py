@@ -12,13 +12,12 @@ class Category(Base):
 
     @staticmethod
     def find_all_category_names():
-        stmt = text("SELECT Category.name FROM Category")
+        stmt = text("SELECT Category.id, Category.name FROM Category")
         res = db.engine.execute(stmt)
 
-        result = []
-
+        result = {}
         for row in res:
-            result.append({"name": row[0]})
+            result[row[0]] = row[1]
 
         return result
 
