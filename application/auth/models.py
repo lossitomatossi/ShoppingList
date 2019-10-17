@@ -10,9 +10,11 @@ class User(Base):
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    role = db.Column(db.String(30), nullable=False)
 
     items = db.relationship("Item", backref='account', lazy=True)
     lists = db.relationship("List", backref='account', lazy=True)
+
 
     def __init__(self, name, username, password):
         self.name = name
@@ -32,7 +34,7 @@ class User(Base):
         return True
 
     def roles(self):
-        return ["ADMIN"]
+        return self.role
 
 
     @staticmethod

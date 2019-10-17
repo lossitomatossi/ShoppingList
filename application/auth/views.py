@@ -40,6 +40,7 @@ def users_create():
     form2 = SignupForm(request.form)
 
     u = User(form2.name.data, form2.username.data, form2.password.data)
+    u.role = "USER"
 
     db.session().add(u)
     db.session().commit()
