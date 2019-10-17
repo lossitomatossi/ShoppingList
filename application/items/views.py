@@ -20,7 +20,10 @@ def items_index():
 
 @app.route("/items/all", methods=["GET"])
 def items_all():
-    return render_template("items/list.html", items = Item.query.all())
+    categoryNames = Category.find_all_category_names()
+    listnames = List.find_all_list_names()
+    items = Item.query.all()
+    return render_template("items/list.html", items = items, categoryNames = categoryNames, listnames = listnames)
 
 @app.route("/items/new/")
 @login_required

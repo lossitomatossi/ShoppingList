@@ -108,3 +108,14 @@ class List(Base):
                     " WHERE (List.account_id = :id)").params(id=id)
 
         db.engine.execute(stmt)
+
+    @staticmethod
+    def find_all_list_names():
+        stmt = text("SELECT List.id, List.name FROM List")
+        res = db.engine.execute(stmt)
+
+        result = {}
+        for row in res:
+            result[row[0]] = row[1]
+
+        return result
