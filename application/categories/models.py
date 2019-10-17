@@ -21,3 +21,22 @@ class Category(Base):
             result.append({"name": row[0]})
 
         return result
+
+    @staticmethod
+    def amount_of_categories():
+        stmt = text("SELECT COUNT(*) FROM Category")
+
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            response = row[0]
+
+        return response
+
+    @staticmethod
+    def create_default_category():
+        stmt = text("INSERT INTO Category"
+                    " (name)"
+                    " values ('default')")
+
+        db.engine.execute(stmt)

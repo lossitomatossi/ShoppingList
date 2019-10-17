@@ -70,3 +70,22 @@ class User(Base):
                     " WHERE Item.account_id = :account_id").params(account_id=account_id)
 
         db.engine.execute(stmt)
+
+    @staticmethod
+    def amount_of_users():
+        stmt = text("SELECT COUNT(*) FROM Account")
+
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            response = row[0]
+
+        return response
+
+    @staticmethod
+    def create_admin_account():
+        stmt = text("INSERT INTO Account"
+                    " (name, username, password, role)"
+                    " values ('admin', 'admin', 'admin', 'ADMIN')")
+                    
+        db.engine.execute(stmt)

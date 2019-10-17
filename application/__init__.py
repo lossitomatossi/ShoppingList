@@ -63,7 +63,7 @@ def login_required(role="ANY"):
         return decorated_view
     return wrapper
 
-# Luetaan kansiosta application tiedoston views sisältö
+# Import models and views
 
 from application import views
 
@@ -89,8 +89,23 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-# Luodaan lopulta tarvittavat tietokantataulut
+# Finally create necessary database tables
 try:
     db.create_all()
 except:
     pass
+
+# If there are no accounts create admin account
+users_amount = User.amount_of_users()
+
+if users_amount == 0:
+    User.create_admin_account()
+
+# If there are no categories, create default category
+# (default category is needed for adding items)
+from application.categories.models import Category
+
+categories_amount = Category.amount_of_categories()
+
+if categories_amount == 0:
+    Category.create_default_category()
