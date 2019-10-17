@@ -28,7 +28,7 @@
         <td>{{ item.id }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.amount }}</td>
-        <td>{{ categoryNames[item.category_id-1].name }}</td>
+        <td>{{ categoryNames[item.category_id] }}</td>
         <td>
           <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
             {% if item.bought == 0 %}

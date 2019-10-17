@@ -5,7 +5,7 @@
   <h1>You have {{ lists|length }} lists</h1>
   <ul class="list-group">
     {% for list in lists %}
-    <a href="{{ url_for('list_page', list_id=list.id) }}" class="list-group-item" style="height: 30px; padding: 5px 15px;">{{ list.id }} {{ list.name }}</a>
+    <a href="{{ url_for('list_page', list_id=list.id) }}" class="list-group-item" style="height: 30px; padding: 5px 15px;">{{ list.name }}</a>
     {% endfor %}
   </ul>
   <a href="{{ url_for('lists_form')}}">Click here to add lists</a>
