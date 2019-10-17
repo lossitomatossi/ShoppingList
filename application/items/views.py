@@ -60,6 +60,7 @@ def items_create():
     i.bought = form.bought.data
     i.account_id = current_user.id
     i.category_id = form.category.data
+    i.list_id = List.find_users_defaultlist_id(current_user.id)
 
     db.session().add(i)
     db.session().commit()

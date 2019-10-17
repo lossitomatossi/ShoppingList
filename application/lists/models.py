@@ -9,6 +9,7 @@ class List(Base):
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
+    items = db.relationship("Item", backref='list', lazy=True)
 
     def __init__(self, name, info):
         self.name = name
@@ -42,6 +43,19 @@ class List(Base):
     @staticmethod
     def user_has_default_list(id):
         stmt = text("SELECT name FROM List"
+        " WHERE (List.account_id = :id)"
+        " AND name = 'default'").params(id=id)
+        res = db.engine.execute(stmt)
+
+        result = []
+        for row in res:
+                result = row[0]
+
+        return result
+
+    @staticmethod
+    def find_users_defaultlist_id(id):
+        stmt = text("SELECT id FROM List"
         " WHERE (List.account_id = :id)"
         " AND name = 'default'").params(id=id)
         res = db.engine.execute(stmt)

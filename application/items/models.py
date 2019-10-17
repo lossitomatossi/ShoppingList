@@ -1,5 +1,6 @@
 from application import db
 from application.models import Base
+from application.lists.models import List
 
 from sqlalchemy.sql import text
 
@@ -12,6 +13,9 @@ class Item(Base):
                            nullable=False)
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'),
+                            nullable=False)
+
+    list_id = db.Column(db.Integer, db.ForeignKey('list.id'),
                             nullable=False)
 
     def __init__(self, name, amount):
