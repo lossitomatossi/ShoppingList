@@ -101,3 +101,10 @@ class List(Base):
                             "amount": row[3],
                             "category_id": row[4]})
         return result
+
+    @staticmethod
+    def delete_lists_by_userid(id):
+        stmt = text("DELETE From List"
+                    " WHERE (List.account_id = :id)").params(id=id)
+
+        db.engine.execute(stmt)

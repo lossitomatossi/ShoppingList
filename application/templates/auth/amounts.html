@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<body>
+  <h1>View for deleting users with no items</h1>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Amount of items</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>
+          {% if user.amount == 0 %}
+            <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}">
+                0  <button class="btn btn-danger" name="name" value="{{ account_id }}" type="submit" disabled>Delete account!</button>
+            </form>
+          {% else %}
+            {{ user.amount }}
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <small>Only users with no items will have a delete button next to them</small>
+</body>
+
+{% endblock %}

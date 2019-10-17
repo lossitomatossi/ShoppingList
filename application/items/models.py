@@ -55,3 +55,9 @@ class Item(Base):
             result = row[0]
 
         return result
+
+    @staticmethod
+    def delete_items_by_userid(id):
+        stmt = text("DELETE From Item"
+                    " WHERE Item.account_id = :id").params(id=id)
+        db.engine.execute(stmt)

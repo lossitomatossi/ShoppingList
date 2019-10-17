@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 from application.items.models import Item
+from application.lists.models import List
+
 from sqlalchemy.sql import text
 
 class User(Base):
@@ -101,3 +103,29 @@ class User(Base):
             response.append({"id":row[0], "username":row[1], "role":row[2]})
 
         return response
+
+    @staticmethod
+    def item_amounts_for_everyone():
+        stmt = text("SELECT account.id, account.username, COUNT(item.account_id) AS 'Number of items'"
+                    " FROM Account"
+                    " LEFT JOIN Item ON account.id = item.account_id"
+                    " GROUP BY account.id")
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "username":row[1], "amount":row[2]})
+
+        return response
+
+    @staticmethod
+    def completely_delete_user(id):
+        Item.delete_items_by_userid(id)
+        List.delete_lists_by_userid(id)
+        User.delete_user_by_userid(id)
+
+    @staticmethod
+    def delete_user_by_userid(id):
+        stmt = text("DELETE FROM Account"
+                    " WHERE (id = :id").params(id=id)

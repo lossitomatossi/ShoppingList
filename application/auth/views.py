@@ -9,6 +9,7 @@ from application.auth.forms import SignupForm
 from application.auth.forms import ChangePasswordForm
 
 from application.items.models import Item
+from application.lists.models import List
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -102,3 +103,17 @@ def users_make_admin(user_id):
     db.session().commit()
 
     return redirect(url_for("list_users"))
+
+@app.route("/users/amounts", methods=["GET"])
+@login_required
+def list_users_with_item_amounts():
+    users = User.item_amounts_for_everyone()
+    return render_template("auth/amounts.html", users = users)
+
+@app.route("/users/amounts/<user_id>/", methods=["POST"])
+@login_required
+def admin_delete_user(user_id):
+    Item.delete_items_by_userid(user_id)
+    List.delete_lists_by_userid(user_id)
+    User.delete_user_by_userid(user_id)
+    return redirect(url_for("list_users_with_item_amounts"))

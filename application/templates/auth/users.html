@@ -21,9 +21,8 @@
           <td>{{ user.role }}</td>
         {% else %}
         <td>
-
           <form method="POST" action="{{ url_for('users_make_admin', user_id=user.id) }}">
-              {{ user.role }}    <button name="name" value="{{ account_id }}" type="submit">Make admin!</button>
+              {{ user.role }}    <button name="name" value="{{ account_id }}" type="submit">Toggle admin!</button>
           </form>
         </td>
         {% endif %}
