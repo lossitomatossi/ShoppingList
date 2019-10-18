@@ -29,3 +29,18 @@ Here you can see all your items and change whether or not they are bought, and e
 ### Edit item
 In this view you can edit every attribute of an item, excluding it's name. Just change the value in the column you wish to edit, and hit the button next to it. This will update the value in the database, and redirect you back to this page so you can see the change. If you delete the item, you will be return to "my items".
 ![edit item](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/edit%20item.PNG)
+## Categories
+A list of categories can be accessed from the navbar by clicking "show categories". Unless there was a problem, there will always be at least one category in this list.
+![categories](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/categories.PNG)
+## Lists
+## My lists
+You can view all your lists from here. The first time you try creating an item, a default list will be created for you. This is to make sure that there will be as few errors as possible. If you click the name of a list, you will be taken to a list specific view.
+![my lists](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/my%20lists.PNG)
+### List page
+In this page you can see more info about a list, and all the items it contains. As in "my items", if you click on the number in an item you will be taken to a page where you can edit this item.
+![list page](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/list_page.PNG)
+### Add list
+From here you can add lists to your user, so you can assign items to these specific lists. Assigning items to list happens from "edit item" view.
+![add list](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/add%20list.PNG)
+
+# Admin features
