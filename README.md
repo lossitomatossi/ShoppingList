@@ -9,33 +9,25 @@ A python based web project to manage your shopping needs. You can track which it
 
 [tsoha-shoppinglist](https://tsoha-shoppinglist.herokuapp.com/)
 
-All permissions user for heroku testing.
+Admin user for testing.
 ```
 username: admin password: admin
 ```
-
-## Features currently working in heroku
-- logging in and out
-- viewing added items (by default all items will be given a category_id of 1 which is the id for the default line in the category table)
-- adding items to the database and marking them as bought (both as you are adding them and also as you are updating them
-- you can list categories in /categories (link missing)
-- you can add new categories in /categories/new (link missing)
-- creating new users(validation wasn't working, so for now no it has been deleted)
-
+Normal user for testing. (Not initialised in local app)
+```
+username: admin password: admin
+```
 ## Features
 - create users
-- delete users (deleting a user will delete all your lists)
+- delete users (deleting a user will delete all your lists) !!NOT FUNCTIONAL 17:03 18.10.19!!
 - add items to be bought
 - mark items as bought
 - assign categories to items
 - change/remove categories from items
 - change the amount of an item you want to buy
 - add items to lists
-- delete items from lists
-- rename lists
-- delete lists
+- move item to a different list
 - add categories
-- delete categories
 - assign items different categories
 
 ## Database diagram
