@@ -35,7 +35,7 @@
           {{ item.amount }}
           <form method="POST" action="{{ url_for('item_amount', item_id = item.id) }}">
             <div class="form-group">
-              <input type="number" name="amount" id="amount" class="form-control" required value="{{ amount }}">
+              <input type="number" max="10000000" name="amount" id="amount" class="form-control" required value="{{ amount }}">
               <div class="invalid-feedback">Amount is needed and it has to be a number!(amount can be zero)</div>
             </div>
             <div>
