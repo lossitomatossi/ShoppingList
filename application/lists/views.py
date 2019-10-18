@@ -7,6 +7,7 @@ from application.lists.forms import ListForm
 
 from application.items.models import Item
 from application.categories.models import Category
+from application.utils.errormessages import msg_other_user
 
 from sqlalchemy.sql import text
 
@@ -50,6 +51,9 @@ def lists_create():
 @app.route("/lists/<list_id>", methods=["GET"])
 @login_required
 def list_page(list_id):
+    list = List.query.get_or_404(list_id)
+    if current_user.id != list.account_id:
+        return render_template("index.html", msg=msg_other_user)
     categoryNames = Category.find_all_category_names()
     items = List.find_items_by_list(list_id)
     return render_template("/lists/info.html", list = List.query.get(list_id), items = items, categoryNames = categoryNames)

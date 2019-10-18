@@ -10,7 +10,7 @@ from application.auth.forms import ChangePasswordForm
 
 from application.items.models import Item
 from application.lists.models import List
-from application.utils.errormessages import msg_admin_feature
+from application.utils.errormessages import msg_admin_feature, msg_other_user
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -56,6 +56,8 @@ def users_create():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
+    if current_user.id != user.id:
+        return render_template("index.html", msg=msg_other_user)
     form = ChangePasswordForm()
     amount = Item.amount_of_items_by_userid(current_user.id)
     return render_template("auth/userprofile.html", user = user, amount=amount, form = form, username = username)

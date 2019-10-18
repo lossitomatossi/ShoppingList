@@ -3,10 +3,10 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.items.models import Item
-from application.items.forms import ItemForm, ItemEditForm
+from application.items.forms import ItemForm, AmountForm, CategoryForm, ListForm
 from application.categories.models import Category
 from application.lists.models import List
-from application.utils.errormessages import msg_admin_feature
+from application.utils.errormessages import msg_admin_feature, msg_other_user
 
 
 from sqlalchemy.sql import text
@@ -52,33 +52,43 @@ def items_set_done(item_id):
 
 @app.route("/items/<item_id>", methods=["GET"])
 @login_required
-def edit_item(item_id):
-    item = Item.query.get(item_id)
-    form = ItemEditForm()
+def item(item_id):
+    item = Item.query.get_or_404(item_id)
+    if current_user.id != item.account_id:
+        return render_template("index.html", msg=msg_other_user)
+
     lists = List.find_all_lists_by_id(current_user.id)
     categories = Category.query.all()
-    return render_template("items/edit.html", item = item, form = form, lists = lists, categories = categories)
+    categoryNames = Category.find_all_category_names()
+    listnames = List.find_all_lists_by_id_dictionary(current_user.id)
+    return render_template("items/edit.html", item = item, lists = lists, categories = categories, categoryNames = categoryNames, listnames = listnames, aform = AmountForm())
 
-@app.route("/items/<item_id>/", methods=["POST"])
+@app.route("/items/<item_id>/amount", methods=["POST"])
 @login_required
-def post_edit_item(item_id):
-    form = ItemCreateForm(request.form)
-    list = Category.query.all()
+def item_amount(item_id):
+    item = Item.query.get_or_404(item_id)
+    form = AmountForm(request.form)
+    item.amount = form.amount.data
+    db.session.commit()
+    return redirect(url_for("item", item_id = item.id))
 
-    if not form.validate():
-        return render_template("items/edit.html", form = form, categories = list)
+@app.route("/items/<item_id>/category", methods=["POST"])
+@login_required
+def item_category(item_id):
+    item = Item.query.get_or_404(item_id)
+    form = CategoryForm(request.form)
+    item.category_id = form.category.data
+    db.session.commit()
+    return redirect(url_for("item", item_id = item.id))
 
-    i = Item.query.get(item_id)
-    i.name = form.name.data
-    i.amount = form.amount.data
-    i.bought = form.bought.data
-    i.account_id = current_user.id
-    i.category_id = form.category.data
-    i.list_id = form.list.data
-
-    update_item(1, "name", 13, 0, 1, 0)
-
-    return redirect(url_for("items_index"))
+@app.route("/items/<item_id>/list", methods=["POST"])
+@login_required
+def item_list(item_id):
+    item = Item.query.get_or_404(item_id)
+    form = ListForm(request.form)
+    item.list_id = form.list.data
+    db.session.commit()
+    return redirect(url_for("item", item_id = item.id))
 
 @app.route("/items/<item_id>/delete", methods=["POST"])
 @login_required
