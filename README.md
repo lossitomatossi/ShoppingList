@@ -32,6 +32,7 @@ username: user password: user
 
 ## Documentation
 - [Installation instructions](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/installationInstructions.md)
+- [User instruction](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/userinstructions.md)
 - [Database structure](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/databasestructure.md)
 - [Use cases](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/usecases.md)
 - [SQL-queries](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/sqlqueries.md)
