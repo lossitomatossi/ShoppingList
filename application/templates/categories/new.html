@@ -7,6 +7,10 @@
     <input type="text" name="name" id="name" class="form-control" required>
     <div class="invalid-feedback">Category name required! The maximum length for a name is 144 characters</div>
   </div>
+  {% for msg in form.name.errors %}
+  <div class="alert alert-primary">{{ msg }}</div>
+  {% endfor %}
+
   <button type="submit" class="btn btn-outline-primary">Add a new category</button>
 </form>
   {% endblock %}
