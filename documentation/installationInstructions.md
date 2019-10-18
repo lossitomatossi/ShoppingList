@@ -44,3 +44,15 @@ If the file was packaged in zip format then extract it to your desired folder.
 ```
 (venv) ~/projekti$ python3 run.py
 ```
+
+# Deploying the app to Heroku
+Continue from the instructions above
+
+```
+(venv) ~/projekti$ heroku create your_app_name
+(venv) ~/projekti$ git remote add heroku https://git.heroku.com/your_app_name
+(venv) ~/projekti$ heroku config:set HEROKU=1
+(venv) ~/projekti$ heroku addons:add heroku-postgresql:hobby-dev
+(venv) ~/projekti$ git push heroku master
+```
+Now your app is deployed to Heroku. If you wish to keep modifying the code and automatically deploying to Heroku, you can find more info at: https://devcenter.heroku.com/articles/github-integration
