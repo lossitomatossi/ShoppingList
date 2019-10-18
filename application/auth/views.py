@@ -39,9 +39,12 @@ def auth_signupform():
 
 @app.route("/auth/", methods=["POST"])
 def users_create():
-    form2 = SignupForm(request.form)
+    form = SignupForm(request.form)
 
-    u = User(form2.name.data, form2.username.data, form2.password.data)
+    if not form.validate():
+        return render_template("auth/signupform.html", form = form)
+
+    u = User(form.name.data, form.username.data, form.password.data)
     u.role = "USER"
 
     db.session().add(u)

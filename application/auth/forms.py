@@ -14,8 +14,8 @@ class LoginForm(FlaskForm):
 class SignupForm(FlaskForm):
     name = StringField("Name", [InputRequired(), Length(min=1, max=144, message=msg_name_length), DataRequired(message="Only using spaces not allowed")])
     username = StringField("Username", [InputRequired(), Length(min=1, max=144, message=msg_username_length),DataRequired(message="Only using spaces not allowed")])
-    password = PasswordField("Password", [validators.required(), validators.Length(min=2), DataRequired(message="Only using spaces not allowed")])
-    password2 = PasswordField("Password", [validators.required(), validators.Length(min=2), DataRequired(message="Only using spaces not allowed")])
+    password = PasswordField("New password", [InputRequired(), EqualTo('confirm', message=msg_password_match), DataRequired(message="Only using spaces not allowed")])
+    confirm = PasswordField("Repeat new password")
 
     class Meta:
         crsf = False
