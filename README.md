@@ -35,5 +35,4 @@ username: admin password: admin
 - [Database structure](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/databasestructure.md)
 - [Use cases](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/usecases.md)
 - [SQL-queries](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/sqlqueries.md)
-## Database diagram
-![diagram](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/databasestructure.png)
+- [Database diagram](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/databasestructure.png)
