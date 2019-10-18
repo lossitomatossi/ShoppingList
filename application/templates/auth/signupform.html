@@ -10,7 +10,7 @@
     <div class="invalid-feedback">Name required! The maximum length for a name is 144 characters</div>
   </div>
   {% for msg in form.name.errors %}
-        <div class="alert alert-primary">{{ msg }}</div>
+    <div class="alert alert-primary">{{ msg }}</div>
   {% endfor %}
   <div class="form-group">
     <label for="username">Username</label>
@@ -18,7 +18,7 @@
     <div class="invalid-feedback">Username required! The maximum length for a name is 144 characters</div>
   </div>
   {% for msg in form.username.errors %}
-        <div class="alert alert-primary">{{ msg }}</div>
+    <div class="alert alert-primary">{{ msg }}</div>
   {% endfor %}
   <div class="form-group">
     <label for="password">Password</label>
@@ -31,11 +31,8 @@
     <div class="invalid-feedback">Password required! The maximum length for a name is 144 characters</div>
   </div>
   {% for msg in form.password.errors %}
-        <div class="alert alert-primary">{{ msg }}</div>
+    <div class="alert alert-primary">{{ msg }}</div>
   {% endfor %}
-  <h1>Form Errors</h1>
-{{ form.errors }}
-
   <button type="submit" class="btn btn-outline-primary">Create new user</button>
 </form>
 {% endblock %}
