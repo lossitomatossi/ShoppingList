@@ -106,7 +106,7 @@ class User(Base):
 
     @staticmethod
     def item_amounts_for_everyone():
-        stmt = text("SELECT account.id, account.username, COUNT(item.account_id) AS 'Number of items'"
+        stmt = text("SELECT account.id, account.username, COUNT(item.account_id)"
                     " FROM Account"
                     " LEFT JOIN Item ON account.id = item.account_id"
                     " GROUP BY account.id")

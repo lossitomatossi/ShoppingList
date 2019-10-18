@@ -13,17 +13,17 @@
       </tr>
     </thead>
     <tbody>
-      {% for user in users %}
+      {% for thing in users %}
       <tr>
-        <td>{{ user.id }}</td>
-        <td>{{ user.username }}</td>
+        <td>{{ thing.id }}</td>
+        <td>{{ thing.username }}</td>
         <td>
-          {% if user.amount == 0 %}
-            <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}">
+          {% if thing.amount == 0 %}
+            <form method="POST" action="{{ url_for('admin_delete_user', user_id=thing.id) }}">
                 0  <button class="btn btn-danger" name="name" value="{{ account_id }}" type="submit" disabled>Delete account!</button>
             </form>
           {% else %}
-            {{ user.amount }}
+            {{ thing.amount }}
           {% endif %}
         </td>
       </tr>
