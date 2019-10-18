@@ -71,4 +71,4 @@ def list_delete(list_id):
 
     db.session.delete(l)
     db.session.commit()
-    return render_template("lists/list.html", lists = lists, msg = "List deleted")
+    return redirect(url_for("lists_index"))
