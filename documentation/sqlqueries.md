@@ -123,3 +123,17 @@ DELETE From List
 ```
 SELECT List.id, List.name FROM List;
 ```
+## Category
+- Find (category_id, category_name) tuples for python dict
+```
+SELECT Category.id, Category.name FROM Category;
+```
+- Checks if there are categories in the database, if the result is zero the method under this one is used to create a default category
+```
+SELECT COUNT(*) FROM Category;
+```      
+- Creates default category if it is missing
+```
+INSERT INTO Category
+ (name) values ('default');
+```
