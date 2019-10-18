@@ -1,5 +1,5 @@
 # User instructions
- <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+ 
  - [Frontpage](#frontpage)
  - [Account management](#account-management)
  - [Navbar](#navbar)
@@ -8,7 +8,7 @@
  - [Lists](#lists)
  - [Profile](#profile)
  - [Admin features](#admin-features)
- <!-- /TOC -->
+ 
 ## Frontpage
 The frontpage of Shopping list looks something like this:
 ![frontpage](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/index.PNG)
