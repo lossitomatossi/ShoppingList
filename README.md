@@ -15,7 +15,7 @@ username: admin password: admin
 ```
 Normal user for testing. (Not initialised in local app)
 ```
-username: admin password: admin
+username: user password: user
 ```
 ## Features
 - create users
