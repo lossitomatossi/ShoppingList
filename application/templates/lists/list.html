@@ -3,9 +3,17 @@
 {% block body %}
 <body>
   <h1>You have {{ lists|length }} lists</h1>
+  {% if msg %}
+    <div class="alert alert-primary">{{ msg }}</div>
+  {% endif %}
   <ul class="list-group">
     {% for list in lists %}
     <a href="{{ url_for('list_page', list_id=list.id) }}" class="list-group-item" style="height: 30px; padding: 5px 15px;">{{ list.name }}</a>
+      {% if list.name != 'default '%}
+      <form method="POST" action="{{ url_for('list_delete', list_id=list.id) }}">
+        <button name="name" class="btn btn-danger" type="submit">Delete!</button>
+      </form>
+      {% endif %}
     {% endfor %}
   </ul>
   <a href="{{ url_for('lists_form')}}">Click here to add lists</a>

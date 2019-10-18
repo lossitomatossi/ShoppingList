@@ -57,3 +57,18 @@ def list_page(list_id):
     categoryNames = Category.find_all_category_names()
     items = List.find_items_by_list(list_id)
     return render_template("/lists/info.html", list = List.query.get(list_id), items = items, categoryNames = categoryNames)
+
+@app.route("/lists/<list_id>/", methods=["POST"])
+@login_required
+def list_delete(list_id):
+    l = List.query.get(list_id)
+    items_in_list = List.find_items_by_list(list_id)
+    lists = List.find_all_lists_by_id(current_user.id)
+
+
+    if len(items_in_list) > 0:
+        return render_template("lists/list.html", lists = lists, msg = "Can't delete list with items in it, move items to another list to delete!")
+
+    db.session.delete(l)
+    db.session.commit()
+    return render_template("lists/list.html", lists = lists, msg = "List deleted")
