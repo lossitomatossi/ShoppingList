@@ -45,3 +45,31 @@ SELECT account.id, account.username, COUNT(item.account_id)
 ```
 DELETE FROM Account
   WHERE (id = user_id);
+```
+
+## Item
+- Delete singly item by item_id
+```
+DELETE FROM ITEM WHERE Item.id = item_id
+```        
+- Find all items for a user 
+```
+SELECT Item.id, Item.name, Item.bought, Item.amount, Item.list_id, Item.category_id FROM Item
+ WHERE (Item.account_id = user_id)
+```
+- Count items for a user
+```
+SELECT COUNT(id) FROM Item
+ WHERE (Item.account_id = user_id)
+```
+- Delete item by item_id
+```
+DELETE FROM Item
+ WHERE Item.account_id = item_id
+```
+- Currently not functional method to update all fields in an item
+```
+UPDATE Item
+ SET name = name, amount = amount, bought = bought, list_id = list_id, category_id = :category_id
+ WHERE id = item_id)
+```
