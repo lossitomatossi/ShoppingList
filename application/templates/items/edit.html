@@ -74,7 +74,7 @@
           </form>
         </td>
         <td>
-          <form method="POST" action="{{ url_for('items_set_done', item_id=item.id) }}">
+          <form method="POST" action="{{ url_for('item_done', item_id = item.id) }}">
             {% if item.bought == 0 %}
               <button name="name" value="{{ item.bought }}" type="submit">No</button>
             {% else %}

@@ -50,6 +50,7 @@ def items_set_done(item_id):
 
     return redirect(url_for("items_index"))
 
+
 @app.route("/items/<item_id>", methods=["GET"])
 @login_required
 def item(item_id):
@@ -89,6 +90,19 @@ def item_list(item_id):
     item.list_id = form.list.data
     db.session.commit()
     return redirect(url_for("item", item_id = item.id))
+
+@app.route("/items/<item_id>/done", methods=["POST"])
+@login_required
+def item_done(item_id):
+
+    i = Item.query.get(item_id)
+    if i.bought == False:
+        i.bought = True
+    elif i.bought == True:
+        i.bought = False
+    db.session().commit()
+
+    return redirect(url_for("item", item_id = i.id))
 
 @app.route("/items/<item_id>/delete", methods=["POST"])
 @login_required
