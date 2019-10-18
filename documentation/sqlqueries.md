@@ -1,5 +1,10 @@
  # SQL-queries used in the app
  Below you'll find lists of items queries grouped by the class which uses them
+ <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+ - [Item](#item)
+ - [List](#list)
+ - [Category](#category)
+ <!-- /TOC -->
  ## User(Table: Account)
  
  - Method for finding accounts with no items
