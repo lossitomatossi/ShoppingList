@@ -43,4 +43,33 @@ In this page you can see more info about a list, and all the items it contains. 
 From here you can add lists to your user, so you can assign items to these specific lists. Assigning items to list happens from "edit item" view.
 ![add list](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/add%20list.PNG)
 
+## Profile
+Your profile will show you how many items you have. You can also change your password here and even delete all your items from the database.
+![profile](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/profile.PNG)
+
 # Admin features
+Admins can access all pages a user can.
+At first startup, the program will create an admin user. You should change the password to something more secure.
+```
+username: admin
+password: admin
+```
+## Admin navbar
+After logging in as an admin you will see more things in your navbar.
+![admin navbar](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/admin%20navbar.PNG)
+
+### All users
+This view will list all users with no items, and give an admin the option to give anyone else admin rights. The admin rights can also be revoked for all but the main admin account. This will make sure that you will always have control of your Shopping List.
+![all users](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/all%20users.PNG)
+
+### Item amounts
+This view will list all users and the amount of items they have. If a user has 0 items attached to them, a button to delete said will appear. This button is disabled for now.
+![item amounts](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/items%20amounts.PNG)
+
+### All items
+This view lists all items in the database.
+![all items](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/all%20items.PNG)
+
+### Add categories
+Only admins have access to add categories. This is because categories aren't user specific so giving users access to this might make the app unusable.
+![add categories](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/new%20category.PNG)
