@@ -1,13 +1,13 @@
 # User instructions
  <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
  - [Frontpage](#frontpage)
- - [Account management](#account_management)
+ - [Account management](#account-management)
  - [Navbar](#navbar)
  - [Items](#items)
  - [Categories](#categories)
  - [Lists](#lists)
  - [Profile](#profile)
- - [Admin features](admin_features)
+ - [Admin features](#admin-features)
  <!-- /TOC -->
 ## Frontpage
 The frontpage of Shopping list looks something like this:
