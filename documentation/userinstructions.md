@@ -7,7 +7,7 @@
  - [Categories](#categories)
  - [Lists](#lists)
  - [Profile](#profile)
- - [Admin features](#admin_features)
+ - [Admin features](admin_features)
  <!-- /TOC -->
 ## Frontpage
 The frontpage of Shopping list looks something like this:
