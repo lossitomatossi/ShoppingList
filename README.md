@@ -30,5 +30,10 @@ username: admin password: admin
 - add categories
 - assign items different categories
 
+## Documentation
+- [Installation instructions](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/installationInstructions.md)
+- [Database structure](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/databasestructure.md)
+- [Use cases](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/usecases.md)
+
 ## Database diagram
 ![diagram](https://github.com/lossitomatossi/ShoppingList/blob/master/documentation/Pictures/databasestructure.png)
